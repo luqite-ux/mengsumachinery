@@ -12,6 +12,7 @@ const navLinks = [
   { href: "#capabilities", label: "Capabilities" },
   { href: "#gallery", label: "Gallery" },
   { href: "/products", label: "Products", isPage: true },
+  { href: "/news", label: "News", isPage: true },
   { href: "#contact", label: "Contact" },
 ]
 
