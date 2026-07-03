@@ -173,7 +173,7 @@ export function AboutSection() {
             </div>
             <div className="relative aspect-video rounded-lg overflow-hidden group">
               <Image
-                src="/images/factory-front.png"
+                src="/images/factory-front.jpg"
                 alt="MEROBOT Factory Entrance"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

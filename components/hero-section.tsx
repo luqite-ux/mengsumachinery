@@ -56,7 +56,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 animate-slow-zoom">
           <Image
-            src="/images/factory-front.png"
+            src="/images/factory-front.jpg"
             alt="MEROBOT Factory"
             fill
             className="object-cover"
