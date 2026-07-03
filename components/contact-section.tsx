@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { submitInquiry } from "@/lib/submit-inquiry"
 
 const contactInfo = [
   {
@@ -36,19 +37,28 @@ export function ContactSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
+    setErrorMessage(null)
+
+    const result = await submitInquiry({
+      name: formState.name,
+      email: formState.email,
+      company: formState.company,
+      message: formState.message,
+      subject: "Homepage contact form",
+    })
+
     setIsSubmitting(false)
+    if (!result.ok) {
+      setErrorMessage(result.error ?? "Submission failed, please try again.")
+      return
+    }
     setIsSubmitted(true)
     setFormState({ name: "", email: "", company: "", message: "" })
-    
-    // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000)
   }
 
@@ -84,6 +94,11 @@ export function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {errorMessage && (
+                  <div className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600">
+                    {errorMessage}
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name *</Label>
