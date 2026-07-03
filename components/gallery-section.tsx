@@ -8,7 +8,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const factoryImages = [
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E8%BD%A6%E9%97%B4%E5%A4%A7%E9%97%A8-QrIEVG1RZZimUsUPpGM8GrwKLa7CpQ.jpg",
+    src: "/images/factory-front.jpg",
     alt: "Factory Entrance",
     category: "Facility",
   },
