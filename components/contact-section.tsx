@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { submitInquiry } from "@/lib/submit-inquiry"
+import { InquiryCaptchaField } from "@/components/inquiry-captcha-field"
 
 const contactInfo = [
   {
@@ -38,11 +39,13 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setErrorMessage(null)
+    const fd = new FormData(e.currentTarget as HTMLFormElement)
 
     const result = await submitInquiry({
       name: formState.name,
@@ -50,10 +53,14 @@ export function ContactSection() {
       company: formState.company,
       message: formState.message,
       subject: "Homepage contact form",
+      captchaScope: fd.get("captchaScope") as string,
+      captchaToken: fd.get("captchaToken") as string,
+      captchaAnswer: fd.get("captchaAnswer") as string,
     })
 
     setIsSubmitting(false)
     if (!result.ok) {
+      setCaptchaRefreshKey((value) => value + 1)
       setErrorMessage(result.error ?? "Submission failed, please try again.")
       return
     }
@@ -142,6 +149,7 @@ export function ContactSection() {
                     required
                   />
                 </div>
+                <InquiryCaptchaField refreshKey={captchaRefreshKey} />
                 <Button
                   type="submit"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
