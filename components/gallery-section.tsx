@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
@@ -42,7 +42,6 @@ const factoryImages = [
 export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [filter, setFilter] = useState<string>("All")
-  const [animationKey, setAnimationKey] = useState(0)
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation()
 
   const categories = ["All", "Facility", "Equipment", "Warehouse", "Office"]
@@ -50,23 +49,22 @@ export function GallerySection() {
     ? factoryImages 
     : factoryImages.filter(img => img.category === filter)
 
-  // Trigger re-animation when filter changes
-  useEffect(() => {
-    setAnimationKey(prev => prev + 1)
-  }, [filter])
-
   const openLightbox = (index: number) => setSelectedImage(index)
-  const closeLightbox = () => setSelectedImage(null)
+  const closeLightbox = useCallback(() => setSelectedImage(null), [])
   
-  const goToPrev = () => {
-    if (selectedImage === null) return
-    setSelectedImage(selectedImage === 0 ? filteredImages.length - 1 : selectedImage - 1)
-  }
+  const goToPrev = useCallback(() => {
+    setSelectedImage((current) => {
+      if (current === null) return null
+      return current === 0 ? filteredImages.length - 1 : current - 1
+    })
+  }, [filteredImages.length])
   
-  const goToNext = () => {
-    if (selectedImage === null) return
-    setSelectedImage(selectedImage === filteredImages.length - 1 ? 0 : selectedImage + 1)
-  }
+  const goToNext = useCallback(() => {
+    setSelectedImage((current) => {
+      if (current === null) return null
+      return current === filteredImages.length - 1 ? 0 : current + 1
+    })
+  }, [filteredImages.length])
 
   // Keyboard navigation
   useEffect(() => {
@@ -78,7 +76,7 @@ export function GallerySection() {
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedImage, filteredImages.length])
+  }, [selectedImage, closeLightbox, goToNext, goToPrev])
 
   return (
     <section id="gallery" className="py-20 lg:py-32 bg-muted">
@@ -122,10 +120,10 @@ export function GallerySection() {
         </div>
 
         {/* Image Grid */}
-        <div key={animationKey} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div key={filter} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredImages.map((image, index) => (
             <GalleryImage 
-              key={`${image.src}-${animationKey}`}
+              key={`${filter}-${image.src}`}
               image={image} 
               index={index}
               onClick={() => openLightbox(index)}

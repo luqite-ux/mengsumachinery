@@ -68,15 +68,20 @@ export function HeroSection() {
 
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {Array.from({ length: 20 }, (_, i) => ({
+          left: (i * 37 + 11) % 100,
+          top: (i * 61 + 17) % 100,
+          delay: (i * 7) % 5,
+          duration: 5 + ((i * 13) % 10),
+        })).map((particle, i) => (
           <div
             key={i}
             className="absolute w-2 h-2 bg-primary/20 rounded-full animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${particle.duration}s`,
             }}
           />
         ))}

@@ -78,7 +78,7 @@ export function ProductsSection() {
 }
 
 function ProductCard({ product, index }: { product: Product, index: number }) {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 })
+  const { ref, isVisible } = useScrollAnimation<HTMLAnchorElement>({ threshold: 0.2 })
 
   return (
     <Link

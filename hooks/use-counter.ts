@@ -14,10 +14,7 @@ export function useCounter(options: UseCounterOptions) {
   const [count, setCount] = useState(start)
 
   useEffect(() => {
-    if (!enabled) {
-      setCount(start)
-      return
-    }
+    if (!enabled) return
 
     let startTime: number | null = null
     let animationFrame: number
@@ -42,5 +39,5 @@ export function useCounter(options: UseCounterOptions) {
     return () => cancelAnimationFrame(animationFrame)
   }, [start, end, duration, enabled])
 
-  return count
+  return enabled ? count : start
 }
