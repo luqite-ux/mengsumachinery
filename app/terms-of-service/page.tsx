@@ -70,9 +70,9 @@ export default function TermsOfServicePage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Disclaimer of Warranties</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Service Disclaimer</h2>
             <p className="text-muted-foreground leading-relaxed">
-              The website is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without warranties of any kind, either express or implied. We do not warrant that the website will be uninterrupted, secure, or error-free.
+              The website is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo;. Access may occasionally be interrupted by maintenance, network conditions, or technical errors.
             </p>
           </section>
 

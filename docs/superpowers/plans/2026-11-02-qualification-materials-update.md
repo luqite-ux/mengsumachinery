@@ -69,7 +69,7 @@
 
 - [ ] **Step 1: Run the Impeccable detector once over the changed UI targets.**
 - [ ] **Step 2: Run qualification tests, existing CAPTCHA tests, lint if configured, and `pnpm build`; record all failures rather than suppressing them.**
-- [ ] **Step 3: Review the diff and worktree for scope purity, secret leakage, forbidden warranty/guarantee copy, and unexpected asset changes.**
+- [ ] **Step 3: Review the diff and worktree for scope purity, secret leakage, forbidden service-commitment copy, and unexpected asset changes.**
 
 ### Task 4: Company GitHub and Vercel Production
 
