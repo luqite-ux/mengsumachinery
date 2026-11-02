@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#capabilities", label: "Capabilities" },
+  { href: "#certifications", label: "Documents" },
   { href: "#gallery", label: "Gallery" },
   { href: "/products", label: "Products", isPage: true },
   { href: "/news", label: "News", isPage: true },
