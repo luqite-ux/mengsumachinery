@@ -1,0 +1,24 @@
+[
+  {
+    "id": "injection-molding-robot-tcf",
+    "title": "Injection Molding Robot Technical Construction File",
+    "documentNumber": "XMT0202601020W/MR",
+    "documentType": "Technical Construction File / Test Report",
+    "issueDate": "2026-10-20",
+    "summary": "A 185-page technical construction file and test report covering Shanghai Mengsu injection molding robot models under Machinery Regulation (EU) 2023/1230 and the standards identified in the report.",
+    "previewImage": "/images/qualifications/injection-molding-robot-tcf-cover.jpg",
+    "pdfUrl": "/documents/injection-molding-robot-technical-construction-file.pdf"
+  },
+  {
+    "id": "injection-molding-robot-voc",
+    "title": "Injection Molding Robot Verification of Conformity",
+    "documentNumber": "ICR/VC/HTT261031",
+    "documentType": "Verification of Conformity",
+    "issueDate": "2026-10-21",
+    "expiryDate": "2031-10-20",
+    "verificationBasis": "Voluntary verification; not a complete CE certification",
+    "summary": "Voluntary verification covering the listed MSP, MSR and MST injection molding robot models. The document itself notes that it does not imply fulfillment of every essential requirement in a Declaration of Conformity.",
+    "previewImage": "/images/qualifications/injection-molding-robot-voc.jpg",
+    "pdfUrl": "/documents/injection-molding-robot-verification-of-conformity.pdf"
+  }
+]
